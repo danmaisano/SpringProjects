@@ -12,16 +12,6 @@ public class DaikichiApplication {
 		SpringApplication.run(DaikichiApplication.class, args);
 	}
 	
-	@RequestMapping("/")
-	public String welcome() {
-		return "Welcome!";
-	}
-	@RequestMapping("/today")
-	public String today() {
-		return "Today you will find much luck!";
-	}
-	@RequestMapping("/tomorrow")
-	public String tomorrow() {
-		return "However, tomorrow will probably suck.!";
-	}
+	
+	
 }
