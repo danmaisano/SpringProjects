@@ -37,7 +37,7 @@ public class FavsForm {
 		this.favPet = favPet;
 	}
 	public ArrayList<String> getFavCodingLanguage() {
-		return favCodingLanguage;
+		return this.favCodingLanguage;
 	}
 	public void setFavCodingLanguage(ArrayList<String> favCodingLanguage) {
 		this.favCodingLanguage = favCodingLanguage;
