@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -69,7 +70,7 @@ public class BookController {
 			return "redirect:/dashboard";
 		}
 		
-		@PostMapping("/editBook")
+		@PatchMapping("/editBook")
 		public String editBook(@Valid @ModelAttribute("updatedBook") Book updatedBook, BindingResult result, Model model, HttpSession session) {
 		    User loggedInUser = (User) session.getAttribute("user");
 		    if (loggedInUser == null) {
@@ -85,15 +86,26 @@ public class BookController {
 		    }
 
 		    if (originalBook.getPostedBy().getId().equals(loggedInUser.getId())) {
-		        bookService.updateBook(updatedBook);
+		        if (updatedBook.getTitle() != null) {
+		            originalBook.setTitle(updatedBook.getTitle());
+		        }
+		        if (updatedBook.getAuthor() != null) {
+		            originalBook.setAuthor(updatedBook.getAuthor());
+		        }
+		        if (updatedBook.getThoughts() != null) {
+		            originalBook.setThoughts(updatedBook.getThoughts());
+		        }
+		        
+		        bookService.updateBook(originalBook);
 		        return "redirect:/dashboard";
 		    } else {
 		        return "redirect:/dashboard";
 		    }
 		}
 
+
 		
-		@PostMapping("/delete/{id}")
+		@DeleteMapping("/delete/{id}")
 		public String deleteBook(Model model, @PathVariable Long id ) {
 			bookService.deleteBook(id);
 			return "redirect:/dashboard";

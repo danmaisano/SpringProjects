@@ -37,6 +37,7 @@
             <div class="d-flex justify-content-center">
                 <a href="/edit/${book.id}"><button class="btn btn-warning mx-3">Edit Book</button></a>
                 <form action="/delete/${book.id}" method="post">
+                    <input type="hidden" name="_method" value="DELETE" />
 				    <button type="submit" class="btn btn-danger mx-3">Delete Book</button>
 				</form>
             </div>

@@ -18,6 +18,7 @@
     <div class="container">
         <h1>Change your Entry for ${updatedBook.title}</h1>
         <form:form action="/editBook" method="POST" modelAttribute="updatedBook">
+        	<input type="hidden" name="_method" value="PATCH"/>
             <form:hidden path="id"/>
             <div class="form-group">
                 <label for="title">Title:</label>
